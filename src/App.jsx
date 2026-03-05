@@ -171,6 +171,21 @@ const App = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVehicles((prev) => {
+        if (prev.length <= 4) return prev;
+        const idxToRemove = Math.max(
+          1,
+          Math.floor(Math.random() * prev.length)
+        );
+        return prev.filter((_, idx) => idx !== idxToRemove);
+      });
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const demoActions = useMemo(
     () => ({
       toCalmState: () => {
@@ -458,10 +473,10 @@ const App = () => {
                     <div className="glass-panel p-3 h-[340px] sm:h-[380px] md:h-[460px]">
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <div className="text-xs uppercase tracking-[0.16em] text-safari-sand/70">
+                          <div className="text-xs uppercase tracking-[0.16em] text-safari-deep">
                             Live vehicle map
                           </div>
-                          <div className="text-sm text-safari-cream/90">
+                          <div className="text-sm text-safari-deep">
                             Real-time GPS view of every tracked vehicle
                           </div>
                         </div>
