@@ -412,7 +412,7 @@ const App = () => {
               element={
                 <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] gap-4">
                   <div className="space-y-4 h-full flex flex-col">
-                    <div className="glass-panel flex-1 p-3">
+                    <div className="glass-panel p-3 h-[340px] sm:h-[380px] md:h-[460px]">
                       <div className="flex items-center justify-between mb-2">
                         <div>
                           <div className="text-xs uppercase tracking-[0.16em] text-safari-sand/70">
