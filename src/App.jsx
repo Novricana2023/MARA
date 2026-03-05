@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 import TopBar from './components/layout/TopBar';
 import SideNav from './components/layout/SideNav';
 import HeroBanner from './components/layout/HeroBanner';
@@ -92,6 +92,7 @@ const App = () => {
   const [currentStepLabel, setCurrentStepLabel] = useState('');
   const [scenarioRunning, setScenarioRunning] = useState(true);
   const [scenarioVersion, setScenarioVersion] = useState(0);
+  const [mobileAlertsOpen, setMobileAlertsOpen] = useState(false);
 
   const zonesState = useMemo(
     () => computeZonesState(vehicles),
@@ -406,6 +407,48 @@ const App = () => {
             totalPassengers={totalPassengers}
             lawAbidingDrivers={lawAbidingDrivers}
           />
+          <nav className="flex lg:hidden gap-2 overflow-x-auto pb-1 -mx-1 px-1 text-xs">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                [
+                  'px-3 py-1.5 rounded-full border whitespace-nowrap',
+                  isActive
+                    ? 'bg-safari-accent text-safari-deep border-safari-accent'
+                    : 'bg-white text-safari-olive/90 border-safari-sand/40'
+                ].join(' ')
+              }
+            >
+              Live operations
+            </NavLink>
+            <NavLink
+              to="/analytics"
+              className={({ isActive }) =>
+                [
+                  'px-3 py-1.5 rounded-full border whitespace-nowrap',
+                  isActive
+                    ? 'bg-safari-accent text-safari-deep border-safari-accent'
+                    : 'bg-white text-safari-olive/90 border-safari-sand/40'
+                ].join(' ')
+              }
+            >
+              Park analytics
+            </NavLink>
+            <NavLink
+              to="/alerts"
+              className={({ isActive }) =>
+                [
+                  'px-3 py-1.5 rounded-full border whitespace-nowrap',
+                  isActive
+                    ? 'bg-safari-accent text-safari-deep border-safari-accent'
+                    : 'bg-white text-safari-olive/90 border-safari-sand/40'
+                ].join(' ')
+              }
+            >
+              Alert center
+            </NavLink>
+          </nav>
           <Routes>
             <Route
               path="/"
@@ -547,6 +590,27 @@ const App = () => {
           </Routes>
         </main>
       </div>
+      {/* Mobile floating alerts toggle */}
+      <button
+        type="button"
+        onClick={() => setMobileAlertsOpen(true)}
+        className="lg:hidden fixed bottom-20 right-4 z-40 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-safari-deep text-safari-cream text-xs shadow-safari-soft"
+      >
+        <span className="h-2 w-2 rounded-full bg-safari-danger animate-pulse" />
+        <span>Live alerts ({alerts.length})</span>
+      </button>
+      {mobileAlertsOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex items-end justify-center">
+          <button
+            type="button"
+            onClick={() => setMobileAlertsOpen(false)}
+            className="absolute inset-0 bg-black/40"
+          />
+          <div className="relative w-full max-h-[70vh] rounded-t-3xl bg-transparent px-2 pb-4">
+            <AlertsPanel alerts={alerts} />
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   );

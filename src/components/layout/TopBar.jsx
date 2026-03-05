@@ -9,13 +9,13 @@ const TopBar = ({
 }) => {
   return (
     <header className="flex flex-col gap-4 px-6 md:px-10 pt-4 pb-6 border-b border-safari-sand/40 bg-gradient-to-b from-safari-cream via-white to-safari-cream sticky top-0 z-30">
-      <div className="flex items-center justify-between gap-6">
+      <div className="flex items-center justify-between gap-4">
         <AfadhiLogo />
-        <div className="hidden md:flex flex-col max-w-md">
-          <span className="text-sm font-semibold text-safari-deep">
+        <div className="flex flex-col max-w-md">
+          <span className="text-xs md:text-sm font-semibold text-safari-deep">
             Live Safari Operations
           </span>
-          <span className="text-xs text-safari-olive/90">
+          <span className="text-[11px] md:text-xs text-safari-olive/90 hidden xs:block">
             Ifadhi keeps track of vehicles, guests, and compliance in real time so you
             can focus on guiding an unforgettable drive.
           </span>
@@ -50,11 +50,11 @@ const TopBar = ({
           </button>
         </div>
         {currentStepLabel && (
-          <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-safari-sand/40 shadow-sm">
-            <span className="text-[11px] uppercase tracking-[0.16em] text-safari-olive/90">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-safari-sand/40 shadow-sm text-[11px] md:text-xs">
+            <span className="uppercase tracking-[0.16em] text-safari-olive/90 hidden sm:inline">
               Live focus
             </span>
-            <span className="text-xs font-semibold text-safari-deep">
+            <span className="font-semibold text-safari-deep truncate max-w-[180px] sm:max-w-xs">
               {currentStepLabel}
             </span>
           </div>
