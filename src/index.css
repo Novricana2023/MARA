@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-safari-cream text-safari-deep font-sans;
+}
+
+.glass-panel {
+  @apply bg-white/95 backdrop-blur-md border border-safari-sand/40 rounded-3xl shadow-safari-soft;
+}
+
+.pill-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.zone-pill-green {
+  @apply pill-badge bg-emerald-500/20 text-emerald-300 border border-emerald-500/40;
+}
+
+.zone-pill-yellow {
+  @apply pill-badge bg-amber-500/20 text-amber-200 border border-amber-500/40;
+}
+
+.zone-pill-red {
+  @apply pill-badge bg-rose-500/20 text-rose-200 border border-rose-500/40;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
